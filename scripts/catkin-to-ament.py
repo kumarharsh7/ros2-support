@@ -11,38 +11,6 @@ from os.path import exists
 from  xml.dom import minidom
 import xml.etree.ElementTree as etree
 
-# Load a module for parsing cmake lists content
-try:
-    import parse_cmake.parsing as cmkp
-except ImportError:
-    import traceback
-    traceback.print_exc()
-    print("ERROR: You must install the parse_cmake python module!")
-    print("")
-    print("    sudo pip install parse_cmake")
-    exit(1)
-
-
-# Names of package files to modify
-PACKAGE_XML = "package.xml"
-CMAKELISTS = "CMakeLists.txt"
-
-
-# List of ROS packages that do not currently exist in ROS 2
-UNKNOWN_ROS_PACKAGES = [
-    "dynamic_reconfigure",
-    "roslib",
-]
-
-# List of ROS packages that have been renamed in ROS 2
-RENAMED_ROS_PACKAGES = {
-    "tf": "tf2",
-    "roscpp": "rclcpp",
-    "rospy": "rclpy",
-    "nodelet": "rclcpp",  # nodelets have become components in ROS 2
-    "message_generation": "rosidl_default_generators",
-    "message_runtime": "rosidl_default_runtime",
-    "rosconsole": "ros2_console",  # Until ROS 2 replacement exists
 }
 
 # List of packages that do not need to be found by CMake
